@@ -8,9 +8,11 @@
 /*  TODO: Convert the sortDescending and sortAscending functions to arrow 
     functions. */
 
+    type sortNumbers = (a: number, b: number) => number
+
 /*  sortDescending is a comparison function that tells the sort method how to sort 
     numbers in descending order */
-function sortDescending(a, b) {
+let sortDescending: sortNumbers = (a, b) => {
 if (a > b) {
     return -1;
 } else if (b > a) {
@@ -22,7 +24,7 @@ if (a > b) {
 
 /*  sortDescending is a comparison function that tells the sort method how to sort 
     numbers in ascending order. */
-function sortAscending(a, b) {
+let sortAscending: sortNumbers = (a, b) => {
 if (a > b) {
     return 1;
 } else if (b > a) {
@@ -38,7 +40,7 @@ if (a > b) {
 
 /*  TODO: Update the BuildArray function. */
 
-function buildArray(items, sortOrder) {
+function buildArray(items: number, sortOrder: 'ascending' | 'descending'): number[] {
     let randomNumbers = [];
     let nextNumber;
     for (let counter = 0; counter < items; counter++) {
@@ -59,12 +61,14 @@ function buildArray(items, sortOrder) {
 let myArray1 = buildArray(12, 'ascending');
 let myArray2 = buildArray(8, 'descending');
 
+console.log(buildArray(5, "ascending"))
+
 /*  EXERCISE 2
     TODO: Update the LoanCalculator function. */
 
-function loanCalculator (principle, interestRate, months) {
-    let interest = interestRate / 1200;   // Calculates the monthly interest rate
-    let payment;
+function loanCalculator (principle: number, interestRate: number, months = 12): string {
+    let interest: number = interestRate / 1200;   // Calculates the monthly interest rate
+    let payment: number;
     payment = principle * interest / (1 - (Math.pow(1/(1 + interest), months)));
     return payment.toFixed(2);
 }
